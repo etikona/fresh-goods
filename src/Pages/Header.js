@@ -5,6 +5,7 @@ const Header = () => {
     const menu = <>
      <li><Link to='signin'>SignIn</Link></li>
      <li><Link to='login'>Login</Link></li>
+     <li><Link to='customers'>Customers</Link></li>
     </>
     return (
         <div>

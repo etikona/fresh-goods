@@ -86,7 +86,7 @@ const Signin = () => {
                     </div>
                     <input className='btn-submit' type="submit" value="Sign in" />
                 </form>
-                {/* <button onClick={Google} className='outline px-2  outline-offset-2 outline-2 my-3'>continue with Google</button> */}
+                <button onClick={signIngoogle} className='outline px-2  outline-offset-2 outline-2 my-3'>continue with Google</button>
                 <p className='err-text'>{error}</p>
                 <p>All ready have an account?<Link to='/login'>Login</Link></p>
             </div>
