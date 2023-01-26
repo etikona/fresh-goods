@@ -22,7 +22,7 @@ const Login = () => {
             return;
         }
       
-        // Creating user
+        // Log in user
         userLogIn(email, password)
         .then(res => {
             const user = res.user;

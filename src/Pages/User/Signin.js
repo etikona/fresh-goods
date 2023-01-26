@@ -1,12 +1,12 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import './Signin.css'
 
 const Signin = () => {
     const [error, setError] = useState(null);
+    const [user, setUser] = useState({})
     const { createUser, updateUserProfile, GoogleLogin } = useContext(AuthContext)
 
     // Submit form
@@ -17,7 +17,6 @@ const Signin = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(name, email, password);
         // Error displaying
         if (password.length < 6) {
             setError("please give at least 6 characters")
@@ -26,38 +25,39 @@ const Signin = () => {
 
         // Creating user
         createUser(email, password)
-            .then(res => {
-                const user = res.user;
-                handleProfile(name)
-                toast.success("Create new user successfully")
-                form.reset();
-            })
-            .catch(err => {
-                const msg = err.message;
-            })
+       
+        .then(res => {
+            const user = res.user;
+            handleProfile(name, email);
+            
+            form.reset();
+        })
+        .catch(err => console.error(err))
     };
 
-    // Log in with Google
-    const Google = () => {
-        const provider = new GoogleAuthProvider();
-        GoogleLogin(provider)
-            .then(() => {
-            })
-            .catch(error =>
-                console.error(error),
-                setError(error.message)
-            )
-    }
-
-    //  Handle user profile
-    const handleProfile = (name) => {
+    const handleProfile =(name, email) => {
         const profile = {
             displayName: name,
+            email: email,
         }
-        updateUserProfile(profile)
-            .then(() => { })
-            .catch(err => console.error(err))
+        console.log(profile);
+        fetch('http://localhost:5000/customers', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(profile)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged){
+                    alert("Customer created successfully.");
+                   
+                }
+            })
+       
     }
+
     return (
         <div className='bg-slate-200 p-5'>
             <div className='form-container bg-slate-200'>
@@ -77,7 +77,7 @@ const Signin = () => {
                     </div>
                     <input className='btn-submit' type="submit" value="Sign in" />
                 </form>
-                <button onClick={Google} className='outline px-2  outline-offset-2 outline-2 my-3'>continue with Google</button>
+                {/* <button onClick={Google} className='outline px-2  outline-offset-2 outline-2 my-3'>continue with Google</button> */}
                 <p className='err-text'>{error}</p>
                 <p>All ready have an account?<Link to='/login'>Login</Link></p>
             </div>
