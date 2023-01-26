@@ -7,7 +7,7 @@ import './Signin.css'
 const Signin = () => {
     const [error, setError] = useState(null);
     const [user, setUser] = useState({})
-    const { createUser, updateUserProfile, GoogleLogin } = useContext(AuthContext)
+    const { createUser, GoogleLogin } = useContext(AuthContext)
 
     // Submit form
     const handleSubmit = (event) => {
@@ -41,7 +41,7 @@ const Signin = () => {
             email: email,
         }
         console.log(profile);
-        fetch('http://localhost:5000/customers', {
+        fetch('https://fresh-goodes-server.vercel.app/customers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -56,6 +56,15 @@ const Signin = () => {
                 }
             })
        
+    }
+    //  Create customer login with Google
+    const signIngoogle = () => {
+        const provider = new GoogleAuthProvider();
+        GoogleLogin(provider)
+            .then(res => {
+                const user = res.user;
+            })
+            .catch(err => console.error(err))
     }
 
     return (
