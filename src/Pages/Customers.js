@@ -23,12 +23,12 @@ const Customers = () => {
         }
     }
     return (
-        <div>
-            <h2>All customers are here</h2>
-            <p>Customers: {customerUi.length}</p>
+        <div >
+            <h2 className='text-3xl font-mono my-5'>All customers are here</h2>
+         
             {/* Show all customers data in a table */}
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto ">
                     <table className="table w-full">
 
                         <thead>

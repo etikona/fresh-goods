@@ -6,23 +6,25 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
 
   const handleLogOut = () => {
-      logout()
-          .then(() => { })
-          .catch(err => console.error(err));
+    logout()
+      .then(() => { })
+      .catch(err => console.error(err));
   }
   const menu = <>
+    <li><Link to='/'>Home</Link></li>
     <li><Link to='signin'>SignIn</Link></li>
     {user?.uid ?
-            <> 
-                <li><button onClick={handleLogOut}>Logout</button></li>
-            </>
-            : <li><Link to="/login">Login</Link></li>
-        }
+      <>
+        <li><button onClick={handleLogOut}>Logout</button></li>
+      </>
+      : <li><Link to="/login">Login</Link></li>
+    }
     <li><Link to='customers'>Customers</Link></li>
+
   </>
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-slate-300 font-bold text-sky-800 font-serif">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
