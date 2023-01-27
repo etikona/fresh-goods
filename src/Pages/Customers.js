@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Customers = () => {
     const customers = useLoaderData();
@@ -8,18 +8,18 @@ const Customers = () => {
     // Remove Customer 
     const customerDelete = _id => {
         const agree = window.confirm("Are you sure to remove?");
-        if(agree){
-            fetch(`http://localhost:5000/customers/${_id}`, {
+        if (agree) {
+            fetch(`https://fresh-goodes-server.vercel.app/customers/${_id}`, {
                 method: 'DELETE',
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.deletedCount > 0){
-                    toast.success('One customer deleted successfully.');
-                    const remainingCustomers = customerUi.filter(customer => customer._id !== _id);
-                    setCustomerUi(remainingCustomers);
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('One customer deleted successfully.');
+                        const remainingCustomers = customerUi.filter(customer => customer._id !== _id);
+                        setCustomerUi(remainingCustomers);
+                    }
+                })
         }
     }
     return (
@@ -46,8 +46,8 @@ const Customers = () => {
                                     <td>{i + 1}</td>
                                     <td>{customer.displayName}</td>
                                     <td>{customer.email}</td>
-                                    <td><button className='btn btn-sm btn-primary'>Edit</button></td>
-                                    <td><button onClick={()=> customerDelete(customer._id)} className='btn btn-sm btn-error'>Delete</button></td>
+                                    <td><Link to={`/update/${customer._id}`}><button className='btn btn-sm btn-primary'>Edit</button></Link></td>
+                                    <td><button onClick={() => customerDelete(customer._id)} className='btn btn-sm btn-error'>Delete</button></td>
                                 </tr>)
                             }
                         </tbody>

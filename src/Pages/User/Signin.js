@@ -25,17 +25,15 @@ const Signin = () => {
 
         // Creating user
         createUser(email, password)
-       
-        .then(res => {
-            const user = res.user;
-            handleProfile(name, email);
-            
-            form.reset();
-        })
-        .catch(err => console.error(err))
+            .then(res => {
+                const user = res.user;
+                handleProfile(name, email);
+                form.reset();
+            })
+            .catch(err => console.error(err))
     };
 
-    const handleProfile =(name, email) => {
+    const handleProfile = (name, email) => {
         const profile = {
             displayName: name,
             email: email,
@@ -50,12 +48,12 @@ const Signin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     alert("Customer created successfully.");
-                   
+
                 }
             })
-       
+
     }
     //  Create customer login with Google
     const signIngoogle = () => {
