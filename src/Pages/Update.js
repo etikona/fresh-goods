@@ -8,7 +8,7 @@ const Update = () => {
     const [customer, setCustomer] = useState(customerData)
     const customerUpdate = event => {
         event.preventDefault();
-        fetch(`http://localhost:5000/customers/${customerData._id}`, {
+        fetch(`https://fresh-goodes-server.vercel.app/customers/${customerData._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

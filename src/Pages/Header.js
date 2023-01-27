@@ -12,14 +12,15 @@ const Header = () => {
   }
   const menu = <>
     <li><Link to='/'>Home</Link></li>
-    <li><Link to='signin'>SignIn</Link></li>
+    <li><Link to='signup'>Sign up</Link></li>
     {user?.uid ?
       <>
         <li><button onClick={handleLogOut}>Logout</button></li>
+        <li><Link to='customers'>Customers</Link></li>
       </>
       : <li><Link to="/login">Login</Link></li>
     }
-    <li><Link to='customers'>Customers</Link></li>
+  
 
   </>
   return (

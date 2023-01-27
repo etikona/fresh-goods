@@ -4,7 +4,7 @@ import Customers from "../Pages/Customers";
 import Home from "../Pages/Home/Home";
 import Update from "../Pages/Update";
 import Login from "../Pages/User/Login";
-import Signin from "../Pages/User/Signin";
+import Signup from "../Pages/User/Signup";
 
 export const routes = createBrowserRouter(
     [
@@ -17,8 +17,8 @@ export const routes = createBrowserRouter(
                     element: <Home/>
                 },
                 {
-                    path: '/signin',
-                    element: <Signin />
+                    path: '/signup',
+                    element: <Signup />
                 },
                 {
                     path: '/login',

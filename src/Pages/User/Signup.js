@@ -68,7 +68,7 @@ const Signin = () => {
     return (
         <div className='bg-slate-200 p-5'>
             <div className='form-container bg-slate-200'>
-                <h3 className='form-title'>Sign In</h3>
+                <h3 className='form-title'>Sign up</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-control">
                         <label htmlFor="name">Name</label>
@@ -84,7 +84,7 @@ const Signin = () => {
                     </div>
                     <input className='btn-submit' type="submit" value="Sign in" />
                 </form>
-                <button onClick={signIngoogle} className='outline px-2  outline-offset-2 outline-2 my-3'>continue with Google</button>
+                <button onClick={signIngoogle} className='outline px-2 rounded bg-sky-400 outline-offset-2 outline-2 my-3'>continue with Google</button>
                 <p className='err-text'>{error}</p>
                 <p>All ready have an account?<Link to='/login'>Login</Link></p>
             </div>
